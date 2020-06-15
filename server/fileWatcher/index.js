@@ -11,7 +11,7 @@ const filename = process.argv[2]; // argv-> Argument vector
 if (!filename) throw Error('ERROR: Filename must be specified.'); // throw -> escape the event loop and halt the node process
 fs.watch(path.join(__dirname, filename), (e, name) => {
     const lsObject = spawn('ls', [filename]);
-    // here lsObject is the child process created and returnd as object with properties like stdin, stdout
+    // here lsObject is the child process created and returnd as object with properties- stdin, stdout
     // top properties- stdin, stdout, stderr - basically are Streams
     lsObject.stdout.pipe(process.stdout);
 

@@ -1,0 +1,79 @@
+NODE- Event driven + Asynchronous => DIRTy
+
+Node uses one virtual mc V8 , the virtual machine that powers Google Chrome
+V8 keeps up with the ECMAScript, so browser don't have  to catch up to use new JavaScript language features in Node
+
+Node- Event Driven, Single threaded
+Browser- Event Driven, Single threaded
+NGINX(an HTTP server like Apache) - Single threaded
+
+Performance(NGINX) > Performance(Apache)
+
+when a large number of threads is needed to handle many concurrent server connections, threading can tax operating system resources.
+Threads require CPU to perform context switches, as well as additional RAM.
+Multithreading- Blocking IO
+Single Threaded- Non Blocking IO
+
+Node is designed for: DIRT(data-intensive real-time)
+
+http://browserling.com/ //to run other browsers on webpage(uses QEMU)
+testling.com by browserling for Node
+
+The underlying asynchronous I/O library ( libuv )
+was built specifically to provide a unified experience regardless of the parent operat-
+ing system, which allows programs to be more easily ported across devices and to run
+on multiple devices if needed.
+
+JavaScript’s bad reputation comes from the DOM’s unreliability
+
+Note that the HTTP request to the database is also managed by the event
+loop. The advantage of having async IO and why JavaScript + Node.js is a great
+fit for data-intensive applications should now be clear.
+
+== tries todo type coercion between two variables
+
+var foo = {
+bar: 123
+};
+function bas() {
+if (this === global)
+console.log('called from global');
+if (this === foo)
+console.log('called from foo');
+}
+// global context
+bas();
+// called from global
+// from foo
+foo.bas = bas;
+foo.bas(); // called from foo
+
+function foo() {
+this.foo = 123;console.log('Is this global?: ', this == global);
+}
+// without the new operator
+foo(); // Is this global?: true
+console.log(global.foo); // 123
+// with the new operator
+var newFoo = new foo(); // Is this global?: false
+console.log(newFoo.foo); // 123
+
+
+__ prefix in JavaScript prototype is conventionally used forproperties that should not be used by user code
+the .prototype is only accessed if the property does not exist on the object
+prototype
+function foo() { };
+foo.prototype.bar = 123;
+// Lets create two instances
+var bas = new foo();
+var qux = new foo();
+// Overwrite the prototype value for bas
+bas.bar = 456;
+console.log(bas.bar); // 456 i.e. prototype not
+accessed
+// Other objects remain unaffected
+console.log(qux.bar); // 123
+
+QUESTIONS-------------
+1. In Node, I/O is almost always performed outside of the main event loop?
+2. If null is a JavaScript object and used to denote an empty object, then why {} == null, false?
