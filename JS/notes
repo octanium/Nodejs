@@ -1,0 +1,14 @@
+While hoisting both variable declaration and function declaration, the variable declaration hoists first.
+
+The eval() and with() functions creates a new scope, js engine cannot know at lexing time exactly what code you may pass to eval(..)
+hence results in poor performance
+
+lexical scope: look in above scope while creating lexers(tokenisation)
+dynamic scope: look in previous functions on call stack(achieved by using this keyword)
+block scoping: Declaring variables as close as possible, as local as possible, to where they will be used
+
+if we "use strict", the compiler would not declare the unknown variable to undefined after ending the search for
+that variable in the last scope(also called as global scope)
+(last scope for browser- window, for Node- global)
+
+Hoisting is per-scope
